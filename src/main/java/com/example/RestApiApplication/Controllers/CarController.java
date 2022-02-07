@@ -77,7 +77,7 @@ public class CarController {
   }
 
   
-  @GetMapping(ApiController.CLIENTS)
+  @GetMapping(ApiController.CLIENTS + ApiController.ID_PATH)
   public ResponseEntity<List<Car>> getClientCars(
     @PathVariable("id") Long clientId
   ) {
