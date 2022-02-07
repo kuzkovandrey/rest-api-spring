@@ -24,7 +24,7 @@ public class CarController {
     return new ResponseEntity<List<Car>>(this.carService.getAll(), HttpStatus.OK);
   }
 
-  @GetMapping("/{id}")
+  @GetMapping(ApiController.ID_PATH)
   public ResponseEntity<Car> getById(@PathVariable("id") Long id) {
     try {
       Car findCar = this.carService.getById(id);
@@ -37,7 +37,7 @@ public class CarController {
     }
   }
 
-  @PostMapping("/{id}")
+  @PostMapping(ApiController.ID_PATH)
   public ResponseEntity<Car> create(
     @RequestBody Car car,
     @PathVariable("id") Long clientId
@@ -51,7 +51,7 @@ public class CarController {
     }
   }
 
-  @PatchMapping("/{id}")
+  @PatchMapping(ApiController.ID_PATH)
   public ResponseEntity<Car> update(
     @RequestBody Car car,
     @PathVariable("id") Long carId,
@@ -70,9 +70,19 @@ public class CarController {
     }
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping(ApiController.ID_PATH)
   public ResponseEntity<Long> delete(@PathVariable("id") Long id) {
     this.carService.detele(id);
     return new ResponseEntity<Long>(id, HttpStatus.OK);
+  }
+
+  
+  @GetMapping(ApiController.CLIENTS)
+  public ResponseEntity<List<Car>> getClientCars(
+    @PathVariable("id") Long clientId
+  ) {
+    List<Car> clientCars = this.carService.getClientCars(clientId);
+
+    return new ResponseEntity<List<Car>>(clientCars, HttpStatus.OK);
   }
 }
