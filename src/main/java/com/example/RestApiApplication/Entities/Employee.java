@@ -1,59 +1,53 @@
 package com.example.RestApiApplication.Entities;
 
-import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.*;
 
 import com.example.RestApiApplication.Constants.ColumnName;
 import com.example.RestApiApplication.Constants.TableName;
 
 @Entity
-@Table(name = TableName.CLIENTS)
-public class Client implements Serializable {
+@Table(name = TableName.EMPLOYEES)
+public class Employee {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = ColumnName.ID, nullable = false, updatable = false)
   private Long id;
 
-  @Column(name = ColumnName.EMAIL)
-  private String email;
-
   @Column(name = ColumnName.NAME)
   private String name;
 
-  @OneToMany(mappedBy = ColumnName.CLIENT, cascade = CascadeType.ALL)
-  private List<Car> cars;
+  @Column(name = ColumnName.NAME)
+  private float rate;
 
-  public Client() {}
+  Employee() {}
 
-  public Client(String email, String name) {
-    this.email = email;
+  Employee(String name, float rate) {
     this.name = name;
+    this.rate = rate;
   }
 
   public Long getId() {
     return this.id;
   }
 
-  public String getEmail() {
-    return this.email;
-  }
-
   public String getName() {
     return this.name;
+  }
+
+  public float getRate() {
+    return this.rate;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
   public void setName(String name) {
     this.name = name;
+  }
+
+  public void setRate(float rate) {
+    this.rate = rate;
   }
 
 }

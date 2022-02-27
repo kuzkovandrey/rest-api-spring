@@ -27,8 +27,7 @@ public class Car implements Serializable {
   @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
   private Client client;
 
-  public Car() {
-  }
+  public Car() {}
 
   public Car(String model, String stateNumber, Client client) {
     this.model = model;

@@ -10,4 +10,5 @@ public interface ColumnName {
   String MODEL = "model";
   String STATE_NUMBER = "state_number";
   String CAR = "car";
+  String RATE = "rate";
 }
