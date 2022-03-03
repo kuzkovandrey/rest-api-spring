@@ -5,7 +5,7 @@ public interface ApiController {
   String CARS = "/cars";
   String CLIENTS = "/clients";
   String EMPLOYEES = "/employees";
-  String PARTS = "/parts";
   String ORDERS = "/orders";
   String ID_PATH = "/{id}";
+  String PRICE_LISTS = "/price-lists";
 }

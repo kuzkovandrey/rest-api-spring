@@ -50,10 +50,8 @@ public class CarService {
 
   public Car update(Car car, Long carId, Long clientId) 
   throws CarNotFoundException, ClientNotFoundException {
-    Car foundCar = this.carRepository
-        .findById(carId)
-        .orElseThrow(() -> new CarNotFoundException());
-
+    Car foundCar = this.getById(carId);
+    
     foundCar.setModel(car.getModel());
     foundCar.setStateNumber(car.getStateNumber());
     foundCar.setClient(this.clientService.getById(clientId));

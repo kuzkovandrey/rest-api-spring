@@ -14,17 +14,19 @@ public class ClientService {
   @Autowired
   private ClientRepository clientRepository;
 
+  private Client findByNameAndEmail(String name, String email) {
+    return this.clientRepository.findByNameAndEmail(name, email);
+  }
+
   public Client create(Client client) {
-    Client foundClient = this.clientRepository.findByNameAndEmail(
-        client.getName(),
-        client.getEmail()
+    Client foundClient = this.findByNameAndEmail(
+      client.getName(), 
+      client.getEmail()
     );
 
-    if (foundClient != null) {
-      return foundClient;
-    } else {
-      return this.clientRepository.save(client);
-    }
+    if (foundClient != null) return foundClient;
+    
+    return this.clientRepository.save(client);
   }
 
   public Client getById(Long id) throws ClientNotFoundException {
@@ -38,9 +40,7 @@ public class ClientService {
   }
 
   public Client update(Client client, Long id) throws ClientNotFoundException {
-    Client foundClient = this.clientRepository
-        .findById(id)
-        .orElseThrow(() -> new ClientNotFoundException());
+    Client foundClient = this.getById(id);
 
     foundClient.setEmail(client.getName());
     foundClient.setName(client.getEmail());

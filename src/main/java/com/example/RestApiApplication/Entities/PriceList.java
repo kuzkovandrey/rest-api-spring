@@ -8,51 +8,50 @@ import com.example.RestApiApplication.Constants.ColumnName;
 import com.example.RestApiApplication.Constants.TableName;
 
 @Entity
-@Table(name = TableName.EMPLOYEES)
-public class Employee {
+@Table(name = TableName.PRICE_LISTS)
+public class PriceList {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = ColumnName.ID, nullable = false, updatable = false)
   private Long id;
 
-  @Column(name = ColumnName.EMPLOYEE_NAME)
-  private String name;
+  @Column(name = ColumnName.DESCRIPTION)
+  private String description;
 
-  @Column(name = ColumnName.RATE)
-  private float rate;
+  @Column(name = ColumnName.COST)
+  private float cost;
 
   @OneToMany(mappedBy = ColumnName.EMPLOYEE, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
   private List<Order> orders;
 
-  Employee() {}
+  PriceList() {}
 
-  Employee(String name, float rate) {
-    this.name = name;
-    this.rate = rate;
+  PriceList(String description, float cost) {
+    this.description = description;
+    this.cost = cost;
   }
 
   public Long getId() {
     return this.id;
   }
 
-  public String getName() {
-    return this.name;
+  public String getDescription() {
+    return this.description;
   }
 
-  public float getRate() {
-    return this.rate;
+  public float getCost() {
+    return this.cost;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
-  public void setRate(float rate) {
-    this.rate = rate;
+  public void setCost(float cost) {
+    this.cost = cost;
   }
-
 }
