@@ -1,9 +1,9 @@
-package com.example.RestApiApplication.Models;
+package com.example.RestApiApplication.Dtos.Responses;
 
-public class ApiOrderModel {
-  private ApiClientModel client;
+public class OrderResponseDto {
+  private Long id;
 
-  private ApiCarModel car;
+  private Long clientId;
 
   private Long employeeId;
 
@@ -11,36 +11,36 @@ public class ApiOrderModel {
 
   private float price;
 
-  ApiOrderModel() {}
+  OrderResponseDto() {}
 
-  public ApiOrderModel(
-    ApiClientModel client, 
-    ApiCarModel car, 
+  public OrderResponseDto(
+    Long id,
+    Long clientId, 
     Long employeeId, 
     Long priceListId, 
     float price
   ) {
-    this.client = client;
-    this.car = car;
+    this.id = id;
+    this.clientId = clientId;
     this.employeeId = employeeId;
     this.priceListId = priceListId;
     this.price = price;
   }
 
-  public ApiClientModel getClient() {
-    return this.client;
+  public Long getId() {
+    return this.id;
   }
 
-  public void setClient(ApiClientModel client) {
-    this.client = client;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public ApiCarModel getCar() {
-    return this.car;
+  public Long getClientId() {
+    return this.clientId;
   }
 
-  public void setCar(ApiCarModel car) {
-    this.car = car;
+  public void setClientId(Long clientId) {
+    this.clientId = clientId;
   }
 
   public Long getEmployeeId() {

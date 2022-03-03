@@ -1,13 +1,13 @@
-package com.example.RestApiApplication.Models;
+package com.example.RestApiApplication.Dtos.Requests;
 
-public class ApiCarModel {
+public class CarRequestDto {
   private String model;
 
   private String stateNumber;
 
-  ApiCarModel() {}
+  CarRequestDto() {}
 
-  public ApiCarModel(String model, String stateNumber) {
+  public CarRequestDto(String model, String stateNumber) {
     this.model = model;
     this.stateNumber = stateNumber;
   }

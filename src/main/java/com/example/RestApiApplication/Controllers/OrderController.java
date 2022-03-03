@@ -1,8 +1,10 @@
 package com.example.RestApiApplication.Controllers;
 
 import com.example.RestApiApplication.Constants.ApiController;
+import com.example.RestApiApplication.Dtos.Requests.OrderRequestDto;
+import com.example.RestApiApplication.Dtos.Responses.OrderResponseDto;
 import com.example.RestApiApplication.Entities.Order;
-import com.example.RestApiApplication.Models.ApiOrderModel;
+import com.example.RestApiApplication.Mappers.OrderMapper;
 import com.example.RestApiApplication.Services.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,16 @@ public class OrderController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public Order create(@RequestBody ApiOrderModel order) {
+  public OrderResponseDto create(@RequestBody OrderRequestDto order) {
     try {
-      return this.orderService.create(order);
+      Order createdOrder = this.orderService.create(order);
+      return OrderMapper.convertEntityToDto(createdOrder);
     } catch (Exception e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     }
   }
 
-  @GetMapping(ApiController.ID_PATH)
-  @ResponseStatus(HttpStatus.OK)
-  public Order getById(@PathVariable("id") Long id) {}
+  // @GetMapping(ApiController.ID_PATH)
+  // @ResponseStatus(HttpStatus.OK)
+  // public Order getById(@PathVariable("id") Long id) {}
 }

@@ -1,13 +1,13 @@
-package com.example.RestApiApplication.Models;
+package com.example.RestApiApplication.Dtos.Requests;
 
-public class ApiClientModel {
+public class ClientRequestDto {
   private String email;
 
   private String name;
 
-  ApiClientModel() {}
+  ClientRequestDto() {}
 
-  public ApiClientModel(String email, String name) {
+  public ClientRequestDto(String email, String name) {
     this.email = email;
     this.name = name;
   }
