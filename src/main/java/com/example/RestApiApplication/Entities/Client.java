@@ -16,10 +16,10 @@ public class Client implements Serializable {
   @Column(name = ColumnName.ID, nullable = false, updatable = false)
   private Long id;
 
-  @Column(name = ColumnName.EMAIL)
+  @Column(name = ColumnName.EMAIL, nullable = false)
   private String email;
 
-  @Column(name = ColumnName.NAME)
+  @Column(name = ColumnName.NAME, nullable = false)
   private String name;
 
   @OneToMany(mappedBy = ColumnName.CLIENT, cascade = CascadeType.ALL)

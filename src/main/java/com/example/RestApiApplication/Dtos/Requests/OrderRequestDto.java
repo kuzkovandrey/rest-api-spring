@@ -11,7 +11,7 @@ public class OrderRequestDto {
 
   private float price;
 
-  OrderRequestDto() {}
+  public OrderRequestDto() {}
 
   public OrderRequestDto(
     ClientRequestDto client, 

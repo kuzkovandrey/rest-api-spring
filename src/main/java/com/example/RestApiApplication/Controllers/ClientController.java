@@ -19,16 +19,16 @@ public class ClientController {
   @Autowired
   private ClientService clientService;
 
-  @PostMapping()
-  public ResponseEntity<Client> create(@RequestBody Client client) {
-    try {
-      Client newClient = this.clientService.create(client);
+  // @PostMapping()
+  // public ResponseEntity<Client> create(@RequestBody Client client) {
+  //   try {
+  //     Client newClient = this.clientService.create(client);
 
-      return new ResponseEntity<Client>(newClient, HttpStatus.CREATED);
-    } catch (Exception e) {
-      return ResponseEntity.badRequest().body(null);
-    }
-  }
+  //     return new ResponseEntity<Client>(newClient, HttpStatus.CREATED);
+  //   } catch (Exception e) {
+  //     return ResponseEntity.badRequest().body(null);
+  //   }
+  // }
 
   @GetMapping
   public ResponseEntity<List<Client>> getAll() {
@@ -51,21 +51,21 @@ public class ClientController {
     }
   }
 
-  @PatchMapping(ApiController.ID_PATH)
-  public ResponseEntity<Client> update(
-    @RequestBody Client client,
-    @PathVariable("id") Long id
-  ) {
-    try {
-      Client updatedClient = this.clientService.update(client, id);
+  // @PatchMapping(ApiController.ID_PATH)
+  // public ResponseEntity<Client> update(
+  //   @RequestBody Client client,
+  //   @PathVariable("id") Long id
+  // ) {
+  //   try {
+  //     Client updatedClient = this.clientService.update(client, id);
 
-      return new ResponseEntity<Client>(updatedClient, HttpStatus.CREATED);
-    } catch (ClientNotFoundException e) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
+  //     return new ResponseEntity<Client>(updatedClient, HttpStatus.CREATED);
+  //   } catch (ClientNotFoundException e) {
+  //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  //   } catch (Exception e) {
+  //     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+  //   }
+  // }
 
   @DeleteMapping(ApiController.ID_PATH)
   public ResponseEntity<Long> delete(@PathVariable("id") Long id) {

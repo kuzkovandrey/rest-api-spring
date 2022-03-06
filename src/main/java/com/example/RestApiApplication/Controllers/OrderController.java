@@ -25,7 +25,7 @@ public class OrderController {
       Order createdOrder = this.orderService.create(order);
       return OrderMapper.convertEntityToDto(createdOrder);
     } catch (Exception e) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
   }
 

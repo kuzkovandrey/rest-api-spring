@@ -15,10 +15,10 @@ public class PriceList {
   @Column(name = ColumnName.ID, nullable = false, updatable = false)
   private Long id;
 
-  @Column(name = ColumnName.DESCRIPTION)
+  @Column(name = ColumnName.DESCRIPTION, nullable = false)
   private String description;
 
-  @Column(name = ColumnName.COST)
+  @Column(name = ColumnName.COST, nullable = false)
   private float cost;
 
   @OneToMany(mappedBy = ColumnName.EMPLOYEE, cascade = { CascadeType.MERGE, CascadeType.PERSIST })

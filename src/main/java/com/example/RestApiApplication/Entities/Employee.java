@@ -15,10 +15,10 @@ public class Employee {
   @Column(name = ColumnName.ID, nullable = false, updatable = false)
   private Long id;
 
-  @Column(name = ColumnName.EMPLOYEE_NAME)
+  @Column(name = ColumnName.EMPLOYEE_NAME, nullable = false)
   private String name;
 
-  @Column(name = ColumnName.RATE)
+  @Column(name = ColumnName.RATE, nullable = false)
   private float rate;
 
   @OneToMany(mappedBy = ColumnName.EMPLOYEE, cascade = { CascadeType.MERGE, CascadeType.PERSIST })

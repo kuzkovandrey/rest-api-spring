@@ -16,10 +16,10 @@ public class Car implements Serializable {
   @Column(name = ColumnName.ID, nullable = false, updatable = false)
   private Long id;
 
-  @Column(name = ColumnName.MODEL)
+  @Column(name = ColumnName.MODEL, nullable = false)
   private String model;
 
-  @Column(name = ColumnName.STATE_NUMBER)
+  @Column(name = ColumnName.STATE_NUMBER, nullable = false)
   private String stateNumber;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
