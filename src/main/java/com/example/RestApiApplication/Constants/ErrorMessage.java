@@ -7,4 +7,5 @@ public interface ErrorMessage {
   String PRICE_LIST_NOT_FOUND = "Price list not found";
   String ORDER_NOT_FOUND = "Order not found";
   String SERVER_ERROR = "Internal Server Error";
+  String BAD_REQUEST = "Bad request";
 }

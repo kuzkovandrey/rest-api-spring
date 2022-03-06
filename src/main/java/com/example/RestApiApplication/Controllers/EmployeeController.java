@@ -2,7 +2,9 @@ package com.example.RestApiApplication.Controllers;
 
 import java.util.List;
 
+import com.example.RestApiApplication.Constants.PathVariables;
 import com.example.RestApiApplication.Constants.ApiController;
+import com.example.RestApiApplication.Dtos.Responses.ErrorResponse;
 import com.example.RestApiApplication.Entities.Employee;
 import com.example.RestApiApplication.Exceptions.EmployeeNotFoundException;
 import com.example.RestApiApplication.Services.EmployeeService;
@@ -19,13 +21,13 @@ public class EmployeeController {
   private EmployeeService employeeService;
 
   @PostMapping
-  public ResponseEntity<Employee> create(@RequestBody Employee employee) {
+  public ResponseEntity<?> create(@RequestBody Employee employee) {
     try {
       Employee newEmployee = this.employeeService.create(employee);
 
       return new ResponseEntity<Employee>(newEmployee, HttpStatus.CREATED);
     } catch (Exception e) {
-      return ResponseEntity.badRequest().body(null);
+      return ErrorResponse.getBadRequestError();
     }
   }
 
@@ -38,20 +40,20 @@ public class EmployeeController {
   }
 
   @GetMapping(ApiController.ID_PATH)
-  public ResponseEntity<Employee> getById(@PathVariable("id") Long id) {
+  public ResponseEntity<?> getById(@PathVariable(PathVariables.ID) Long id) {
     try {
       Employee findEmployee = this.employeeService.getById(id);
 
-      return new ResponseEntity<>(findEmployee, HttpStatus.OK);
+      return new ResponseEntity<Employee>(findEmployee, HttpStatus.OK);
     } catch (EmployeeNotFoundException e) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      return ErrorResponse.getNotFoundError(e);
     } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return ErrorResponse.getServerError();
     }
   }
 
   @PatchMapping(ApiController.ID_PATH)
-  public ResponseEntity<Employee> update(
+  public ResponseEntity<?> update(
     @RequestBody Employee employee,
     @PathVariable("id") Long id
   ) {
@@ -60,14 +62,14 @@ public class EmployeeController {
 
       return new ResponseEntity<Employee>(updatedEmployee, HttpStatus.CREATED);
     } catch (EmployeeNotFoundException e) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      return ErrorResponse.getNotFoundError(e);
     } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return ErrorResponse.getServerError();
     }
   }
 
   @DeleteMapping(ApiController.ID_PATH)
-  public ResponseEntity<Long> delete(@PathVariable("id") Long id) {
+  public ResponseEntity<Long> delete(@PathVariable(PathVariables.ID) Long id) {
     this.employeeService.delete(id);
     
     return new ResponseEntity<Long>(id, HttpStatus.OK);

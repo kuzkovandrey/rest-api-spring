@@ -3,6 +3,7 @@ package com.example.RestApiApplication.Controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.RestApiApplication.Constants.PathVariables;
 import com.example.RestApiApplication.Constants.ApiController;
 import com.example.RestApiApplication.Dtos.Requests.OrderRequestDto;
 import com.example.RestApiApplication.Dtos.Responses.OrderResponseDto;
@@ -46,7 +47,7 @@ public class OrderController {
 
   @GetMapping(ApiController.ID_PATH)
   @ResponseStatus(HttpStatus.OK)
-  public OrderResponseDto getById(@PathVariable("id") Long id) {
+  public OrderResponseDto getById(@PathVariable(PathVariables.ID) Long id) {
     try {
       Order order = this.orderService.getById(id);
 
@@ -59,7 +60,7 @@ public class OrderController {
   }
 
   @DeleteMapping(ApiController.ID_PATH)
-  public ResponseEntity<Long> delete(@PathVariable("id") Long id) {
+  public ResponseEntity<Long> delete(@PathVariable(PathVariables.ID) Long id) {
     this.orderService.delete(id);
 
     return new ResponseEntity<Long>(id, HttpStatus.OK);

@@ -2,7 +2,9 @@ package com.example.RestApiApplication.Controllers;
 
 import java.util.List;
 
+import com.example.RestApiApplication.Constants.PathVariables;
 import com.example.RestApiApplication.Constants.ApiController;
+import com.example.RestApiApplication.Dtos.Responses.ErrorResponse;
 import com.example.RestApiApplication.Entities.PriceList;
 import com.example.RestApiApplication.Exceptions.PriceListNotFoundException;
 import com.example.RestApiApplication.Services.PriceListService;
@@ -38,20 +40,20 @@ public class PriceListController {
   }
 
   @GetMapping(ApiController.ID_PATH)
-  public ResponseEntity<PriceList> getById(@PathVariable("id") Long id) {
+  public ResponseEntity<?> getById(@PathVariable(PathVariables.ID) Long id) {
     try {
       PriceList findPriceList = this.priceListService.getById(id);
 
-      return new ResponseEntity<>(findPriceList, HttpStatus.OK);
+      return new ResponseEntity<PriceList>(findPriceList, HttpStatus.OK);
     } catch (PriceListNotFoundException e) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      return ErrorResponse.getNotFoundError(e);
     } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return ErrorResponse.getServerError();
     }
   }
 
   @PatchMapping(ApiController.ID_PATH)
-  public ResponseEntity<PriceList> update(
+  public ResponseEntity<?> update(
     @RequestBody PriceList priceList,
     @PathVariable("id") Long id
   ) {
@@ -60,14 +62,14 @@ public class PriceListController {
 
       return new ResponseEntity<PriceList>(updatedPriceList, HttpStatus.CREATED);
     } catch (PriceListNotFoundException e) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      return ErrorResponse.getNotFoundError(e);
     } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return ErrorResponse.getServerError();
     }
   }
 
   @DeleteMapping(ApiController.ID_PATH)
-  public ResponseEntity<Long> delete(@PathVariable("id") Long id) {
+  public ResponseEntity<Long> delete(@PathVariable(PathVariables.ID) Long id) {
     this.priceListService.delete(id);
     
     return new ResponseEntity<Long>(id, HttpStatus.OK);
