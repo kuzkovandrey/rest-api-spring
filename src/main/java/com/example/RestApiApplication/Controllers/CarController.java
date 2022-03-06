@@ -77,12 +77,12 @@ public class CarController {
   // }
 
   
-  @GetMapping(ApiController.CLIENTS + ApiController.ID_PATH)
-  public ResponseEntity<List<Car>> getClientCars(
-    @PathVariable("id") Long clientId
-  ) {
-    List<Car> clientCars = this.carService.getClientCars(clientId);
+  // @GetMapping(ApiController.CLIENTS + ApiController.ID_PATH)
+  // public ResponseEntity<List<Car>> getClientCars(
+  //   @PathVariable("id") Long clientId
+  // ) {
+  //   List<Car> clientCars = this.carService.getClientCars(clientId);
 
-    return new ResponseEntity<List<Car>>(clientCars, HttpStatus.OK);
-  }
+  //   return new ResponseEntity<List<Car>>(clientCars, HttpStatus.OK);
+  // }
 }

@@ -1,7 +1,7 @@
 package com.example.RestApiApplication.Services;
 
 import java.util.List;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Entities.Car;
 import com.example.RestApiApplication.Exceptions.CarNotFoundException;
@@ -64,11 +64,11 @@ public class CarService {
     return id;
   }
 
-  public List<Car> getClientCars(Long clientId) {
-    return this.getAll()
-      .stream()
-      .filter(car -> car.getClient().getId() == clientId)
-      .collect(Collectors.toList());
-  }
+  // public List<Car> getClientCars(Long clientId) {
+  //   return this.getAll()
+  //     .stream()
+  //     .filter(car -> car.getClient().getId() == clientId)
+  //     .collect(Collectors.toList());
+  // }
 
 }

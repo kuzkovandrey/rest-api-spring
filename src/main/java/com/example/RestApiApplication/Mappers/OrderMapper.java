@@ -10,7 +10,8 @@ public class OrderMapper {
       order.getClient().getId(),
       order.getEmployee().getId(),
       order.getPriceList().getId(),
-      order.getPrice()
+      order.getPrice(),
+      order.getCreatedAt()
     );
   }
 }

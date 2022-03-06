@@ -39,6 +39,10 @@ public class Client implements Serializable {
     return this.id;
   }
 
+  public List<Car> getCars() {
+    return this.cars;
+  }
+
   public String getEmail() {
     return this.email;
   }
@@ -57,6 +61,10 @@ public class Client implements Serializable {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public void setCars(List<Car> cars) {
+    this.cars = cars;
   }
 
 }
