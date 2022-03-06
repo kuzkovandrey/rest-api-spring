@@ -21,7 +21,10 @@ public class Employee {
   @Column(name = ColumnName.RATE, nullable = false)
   private float rate;
 
-  @OneToMany(mappedBy = ColumnName.EMPLOYEE, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+  @OneToMany(
+    mappedBy = ColumnName.EMPLOYEE, 
+    cascade = { CascadeType.MERGE, CascadeType.PERSIST }
+  )
   private List<Order> orders;
 
   Employee() {}

@@ -38,7 +38,8 @@ public class PriceListService {
     return this.priceListRepository.findAll();
   }
 
-  public PriceList update(PriceList price, Long id) throws PriceListNotFoundException {
+  public PriceList update(PriceList price, Long id) 
+    throws PriceListNotFoundException {
     PriceList priceList = this.getById(id);
 
     priceList.setCost(price.getCost());

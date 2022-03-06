@@ -76,7 +76,8 @@ public class OrderService {
     );
   }
 
-  private Car createCar(CarRequestDto car, Client client) throws ClientNotFoundException {
+  private Car createCar(CarRequestDto car, Client client) 
+    throws ClientNotFoundException {
     return this.carService.create(
       new Car(
         car.getModel(),
@@ -86,5 +87,4 @@ public class OrderService {
       client.getId()
     );
   }
-
 }

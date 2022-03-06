@@ -43,7 +43,12 @@ public class Order {
 
   public Order() {}
 
-  public Order(Client client, Employee employee, PriceList priceList, float price) {
+  public Order(
+    Client client, 
+    Employee employee, 
+    PriceList priceList, 
+    float price
+  ) {
     this.client = client;
     this.employee = employee;
     this.priceList = priceList;

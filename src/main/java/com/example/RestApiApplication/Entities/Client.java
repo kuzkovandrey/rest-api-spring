@@ -25,7 +25,10 @@ public class Client implements Serializable {
   @OneToMany(mappedBy = ColumnName.CLIENT, cascade = CascadeType.ALL)
   private List<Car> cars;
 
-  @OneToMany(mappedBy = ColumnName.CLIENT, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+  @OneToMany(
+    mappedBy = ColumnName.CLIENT, 
+    cascade = { CascadeType.MERGE, CascadeType.PERSIST }
+  )
   private List<Order> orders;
 
   public Client() {}

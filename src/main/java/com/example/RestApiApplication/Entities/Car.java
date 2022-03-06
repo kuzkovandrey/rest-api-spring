@@ -47,10 +47,6 @@ public class Car implements Serializable {
     return this.stateNumber;
   }
 
-  // public Client getClient() {
-  //   return this.client;
-  // }
-
   public void setId(Long id) {
     this.id = id;
   }

@@ -21,7 +21,10 @@ public class PriceList {
   @Column(name = ColumnName.COST, nullable = false)
   private float cost;
 
-  @OneToMany(mappedBy = ColumnName.EMPLOYEE, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+  @OneToMany(
+    mappedBy = ColumnName.EMPLOYEE, 
+    cascade = { CascadeType.MERGE, CascadeType.PERSIST }
+  )
   private List<Order> orders;
 
   PriceList() {}
