@@ -37,21 +37,15 @@ public class OrderController {
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public List<OrderResponseDto> getAll() {
-    return this.orderService
-      .getAll()
-      .stream()
-      .map(order -> OrderMapper.convertEntityToDto(order))
-      .collect(Collectors.toList());
+  public List<Order> getAll() {
+    return this.orderService.getAll();
   }
 
   @GetMapping(ApiController.ID_PATH)
   @ResponseStatus(HttpStatus.OK)
-  public OrderResponseDto getById(@PathVariable(PathVariables.ID) Long id) {
+  public Order getById(@PathVariable(PathVariables.ID) Long id) {
     try {
-      Order order = this.orderService.getById(id);
-
-      return OrderMapper.convertEntityToDto(order);
+      return this.orderService.getById(id);
     } catch (OrderNotFoundException e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     } catch (Exception e) {
