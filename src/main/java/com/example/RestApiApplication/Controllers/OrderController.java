@@ -1,7 +1,6 @@
 package com.example.RestApiApplication.Controllers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Constants.PathVariables;
 import com.example.RestApiApplication.Constants.ApiController;

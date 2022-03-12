@@ -21,6 +21,9 @@ public class Employee {
   @Column(name = ColumnName.RATE, nullable = false)
   private float rate;
 
+  @Column(name = ColumnName.IS_REMOVED, nullable = false)
+  private boolean isRemoved = false;
+
   @OneToMany(
     mappedBy = ColumnName.EMPLOYEE, 
     cascade = { CascadeType.MERGE, CascadeType.PERSIST }
@@ -46,6 +49,10 @@ public class Employee {
     return this.rate;
   }
 
+  public boolean getIsRemoved() {
+    return this.isRemoved;
+  }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -56,6 +63,10 @@ public class Employee {
 
   public void setRate(float rate) {
     this.rate = rate;
+  }
+
+  public void setIsRemoved(boolean isRemoved) {
+    this.isRemoved = isRemoved;
   }
 
 }

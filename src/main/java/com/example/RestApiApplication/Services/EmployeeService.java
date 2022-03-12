@@ -1,6 +1,7 @@
 package com.example.RestApiApplication.Services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Entities.Employee;
 import com.example.RestApiApplication.Exceptions.EmployeeNotFoundException;
@@ -8,6 +9,7 @@ import com.example.RestApiApplication.Repositories.EmployeeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class EmployeeService {
@@ -33,7 +35,11 @@ public class EmployeeService {
   }
 
   public List<Employee> getAll() {
-    return this.employeeRepository.findAll();
+    return this.employeeRepository
+      .findAll()
+      .stream()
+      .filter(employee -> !employee.getIsRemoved())
+      .collect(Collectors.toList());
   }
 
   public Employee update(Employee empl, Long id) throws EmployeeNotFoundException {
@@ -45,8 +51,13 @@ public class EmployeeService {
     return this.employeeRepository.save(employee);
   }
 
-  public Long delete(Long id) {
-    this.employeeRepository.deleteById(id);
+  public Long delete(Long id) throws EmployeeNotFoundException {
+    Employee employee = this.getById(id);
+
+    employee.setIsRemoved(true);
+
+    this.update(employee, id);
+
     return id;
   }
 }

@@ -21,4 +21,5 @@ public interface ColumnName {
   String TIMESTAMP = "timestamp"; 
   String PRICE = "price";
   String CREATED_AT = "created_at";
+  String IS_REMOVED = "is_removed";
 }

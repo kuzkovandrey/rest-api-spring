@@ -1,6 +1,7 @@
 package com.example.RestApiApplication.Services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Entities.PriceList;
 import com.example.RestApiApplication.Exceptions.PriceListNotFoundException;
@@ -35,7 +36,11 @@ public class PriceListService {
   }
 
   public List<PriceList> getAll() {
-    return this.priceListRepository.findAll();
+    return this.priceListRepository
+      .findAll()
+      .stream()
+      .filter(price -> !price.getIsRemoved())
+      .collect(Collectors.toList());
   }
 
   public PriceList update(PriceList price, Long id) 
@@ -48,8 +53,13 @@ public class PriceListService {
     return this.priceListRepository.save(priceList);
   }
 
-  public Long delete(Long id) {
-    this.priceListRepository.deleteById(id);
+  public Long delete(Long id) throws PriceListNotFoundException {
+    PriceList price = this.getById(id);
+
+    price.setIsRemoved(true);
+
+    this.update(price, id);
+
     return id;
   }
   
