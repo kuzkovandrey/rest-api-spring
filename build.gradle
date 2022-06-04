@@ -4,13 +4,13 @@ plugins {
 	id 'java'
 }
 
-//jar {
-//	manifest {
-//		attributes(
-//				'Main-Class': 'com.example.RestApiApplication.RestApiApplication'
-//		)
-//	}
-//}
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'com.example.RestApiApplication.RestApiApplication'
+		)
+	}
+}
 
 group = 'com.example'
 version = '1.1'
