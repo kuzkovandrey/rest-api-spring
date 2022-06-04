@@ -7,7 +7,7 @@ plugins {
 jar {
 	manifest {
 		attributes(
-				'RestApiApplication': 'com.example.RestApiApplication'
+				'Main-Class': 'com.example.RestApiApplication'
 		)
 	}
 }
