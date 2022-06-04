@@ -1,10 +1,12 @@
 package com.example.RestApiApplication.Services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Dtos.Requests.CarRequestDto;
 import com.example.RestApiApplication.Dtos.Requests.ClientRequestDto;
 import com.example.RestApiApplication.Dtos.Requests.OrderRequestDto;
+import com.example.RestApiApplication.Dtos.Responses.ShortOrder;
 import com.example.RestApiApplication.Entities.Car;
 import com.example.RestApiApplication.Entities.Client;
 import com.example.RestApiApplication.Entities.Employee;
@@ -14,6 +16,7 @@ import com.example.RestApiApplication.Exceptions.ClientNotFoundException;
 import com.example.RestApiApplication.Exceptions.EmployeeNotFoundException;
 import com.example.RestApiApplication.Exceptions.OrderNotFoundException;
 import com.example.RestApiApplication.Exceptions.PriceListNotFoundException;
+import com.example.RestApiApplication.Mappers.OrderMapper;
 import com.example.RestApiApplication.Repositories.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +63,14 @@ public class OrderService {
 
   public List<Order> getAll() {
     return this.orderRepository.findAll();
+  }
+
+  public List<ShortOrder> getOrderList() {
+    return this.orderRepository
+      .findAll()
+      .stream()
+      .map(order -> OrderMapper.convertToShort(order))
+      .collect(Collectors.toList());
   }
 
   public Long delete(Long id) {

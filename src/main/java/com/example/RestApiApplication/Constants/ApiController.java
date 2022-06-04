@@ -8,4 +8,5 @@ public interface ApiController {
   String ORDERS = "/orders";
   String ID_PATH = "/{id}";
   String PRICE_LISTS = "/price-lists";
+  String LIST = "/list";
 }

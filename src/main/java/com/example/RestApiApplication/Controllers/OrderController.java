@@ -7,6 +7,7 @@ import com.example.RestApiApplication.Constants.PathVariables;
 import com.example.RestApiApplication.Constants.ApiController;
 import com.example.RestApiApplication.Dtos.Requests.OrderRequestDto;
 import com.example.RestApiApplication.Dtos.Responses.OrderResponseDto;
+import com.example.RestApiApplication.Dtos.Responses.ShortOrder;
 import com.example.RestApiApplication.Entities.Order;
 import com.example.RestApiApplication.Exceptions.OrderNotFoundException;
 import com.example.RestApiApplication.Mappers.OrderMapper;
@@ -43,6 +44,12 @@ public class OrderController {
       .stream()
       .map(order -> OrderMapper.convertEntityToDto(order))
       .collect(Collectors.toList());
+  }
+
+  @GetMapping(ApiController.LIST)
+  @ResponseStatus(HttpStatus.OK)
+  public List<ShortOrder> getOrderList() {
+    return this.orderService.getOrderList();
   }
 
   @GetMapping(ApiController.ID_PATH)
