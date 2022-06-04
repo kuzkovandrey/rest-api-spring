@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(ApiController.CLIENTS)
 public class ClientController {
 
-  @Autowired
+  @Autowired()
   private ClientService clientService;
 
   @GetMapping
