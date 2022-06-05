@@ -24,11 +24,6 @@ public class PriceListService {
   }
 
   public PriceList create(PriceList price) {
-    // PriceList priceList = this.findByDescription(price.getDescription());
-    // if (priceList == null) return this.priceListRepository.save(price);
-    // priceList.setCost(price.getCost());
-    // priceList.setIsRemoved(false);
-    // return this.priceListRepository.save(priceList);
     return this.priceListRepository.save(price);
   }
 
