@@ -20,13 +20,12 @@ public class PriceListService {
   }
 
   public PriceList create(PriceList price) {
-    PriceList priceList = this.findByDescription(price.getDescription());
-
-    if (priceList == null) return this.priceListRepository.save(price);
-
-    priceList.setCost(price.getCost());
-      
-    return this.priceListRepository.save(priceList);
+    // PriceList priceList = this.findByDescription(price.getDescription());
+    // if (priceList == null) return this.priceListRepository.save(price);
+    // priceList.setCost(price.getCost());
+    // priceList.setIsRemoved(false);
+    // return this.priceListRepository.save(priceList);
+    return this.priceListRepository.save(price);
   }
 
   public PriceList getById(Long id) throws PriceListNotFoundException {
@@ -49,6 +48,7 @@ public class PriceListService {
 
     priceList.setCost(price.getCost());
     priceList.setDescription(price.getDescription());
+    // priceList.setIsRemoved(false);
 
     return this.priceListRepository.save(priceList);
   }

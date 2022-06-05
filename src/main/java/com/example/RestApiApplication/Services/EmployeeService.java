@@ -21,11 +21,11 @@ public class EmployeeService {
   }
 
   public Employee create(Employee employee) {
-    Employee empl = this.findByName(employee.getName());
-
-    if (empl == null) return this.employeeRepository.save(employee);
-
-    return empl;
+    // Employee empl = this.findByName(employee.getName());
+    // if (empl == null) return this.employeeRepository.save(employee);
+    // empl.setIsRemoved(false);
+    // return empl;
+    return this.employeeRepository.save(employee);
   }
 
   public Employee getById(Long id) throws EmployeeNotFoundException {
