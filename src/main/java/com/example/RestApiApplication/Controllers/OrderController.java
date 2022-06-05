@@ -58,11 +58,12 @@ public class OrderController {
 
   @GetMapping(ApiController.ID_PATH)
   @ResponseStatus(HttpStatus.OK)
-  public OrderResponseDto getById(@PathVariable(PathVariables.ID) Long id) {
+  public Order getById(@PathVariable(PathVariables.ID) Long id) {
     try {
-      Order order = this.orderService.getById(id);
+      //Order order = this.orderService.getById(id);
+      //return OrderMapper.convertEntityToDto(order);
 
-      return OrderMapper.convertEntityToDto(order);
+      return this.orderService.getById(id);
     } catch (OrderNotFoundException e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     } catch (Exception e) {
