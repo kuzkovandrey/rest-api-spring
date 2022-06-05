@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(ApiController.EMPLOYEES)
 public class EmployeeController {
+  private final EmployeeService employeeService;
+
   @Autowired
-  private EmployeeService employeeService;
+  public EmployeeController(EmployeeService employeeService) {
+    this.employeeService = employeeService;
+  }
 
   @PostMapping
   public ResponseEntity<?> create(@RequestBody Employee employee) {

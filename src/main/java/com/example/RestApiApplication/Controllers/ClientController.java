@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(ApiController.CLIENTS)
 public class ClientController {
+  private final ClientService clientService;
 
-  @Autowired()
-  private ClientService clientService;
+  @Autowired
+  public ClientController(ClientService clientService) {
+    this.clientService = clientService;
+  }
 
   @GetMapping
   public ResponseEntity<List<Client>> getAll() {

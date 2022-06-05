@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(ApiController.CARS)
 public class CarController {
+  private final CarService carService;
+
   @Autowired
-  private CarService carService;
+  public CarController(CarService carService) {
+    this.carService = carService;
+  }
 
   @GetMapping
   public ResponseEntity<List<Car>> getAll() {

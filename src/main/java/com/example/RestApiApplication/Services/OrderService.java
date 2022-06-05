@@ -25,20 +25,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
-  @Autowired
-  private EmployeeService employeeService;
+  private final EmployeeService employeeService;
+
+  private final PriceListService priceListService;
+
+  private final ClientService clientService;
+
+  private final CarService carService;
+
+  private final OrderRepository orderRepository;
 
   @Autowired
-  private PriceListService priceListService;
-
-  @Autowired
-  private ClientService clientService;
-
-  @Autowired
-  private CarService carService;
-
-  @Autowired
-  private OrderRepository orderRepository;
+  public OrderService(
+          EmployeeService employeeService,
+          PriceListService priceListService,
+          ClientService clientService,
+          CarService carService,
+          OrderRepository orderRepository
+  ) {
+    this.employeeService = employeeService;
+    this.priceListService = priceListService;
+    this.clientService = clientService;
+    this.carService = carService;
+    this.orderRepository = orderRepository;
+  }
 
   @Transactional(rollbackFor = { Exception.class })
   public Order create(OrderRequestDto order)

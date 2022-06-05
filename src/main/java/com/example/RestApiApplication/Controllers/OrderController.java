@@ -22,8 +22,12 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping(ApiController.ORDERS)
 public class OrderController {
+  private final OrderService orderService;
+
   @Autowired
-  private OrderService orderService;
+  public OrderController(OrderService orderService) {
+    this.orderService = orderService;
+  }
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)

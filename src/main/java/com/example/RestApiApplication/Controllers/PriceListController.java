@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(ApiController.PRICE_LISTS)
 public class PriceListController {
+  private final PriceListService priceListService;
+
   @Autowired
-  private PriceListService priceListService;
+  public PriceListController(PriceListService priceListService) {
+    this.priceListService = priceListService;
+  }
 
   @PostMapping
   public ResponseEntity<PriceList> create(@RequestBody PriceList priceList) {

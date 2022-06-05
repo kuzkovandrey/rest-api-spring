@@ -12,11 +12,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CarService {
-  @Autowired
-  private CarRepository carRepository;
+  private final CarRepository carRepository;
+
+  private final ClientService clientService;
 
   @Autowired
-  private ClientService clientService;
+  public CarService(CarRepository carRepository, ClientService clientService) {
+    this.carRepository = carRepository;
+    this.clientService = clientService;
+  }
 
   public Car create(Car car, Long clientId) throws ClientNotFoundException {
     Car findedCar = this.carRepository.findByStateNumber(car.getStateNumber());
