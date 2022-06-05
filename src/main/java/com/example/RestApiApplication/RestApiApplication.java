@@ -9,9 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @SpringBootApplication
 public class RestApiApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(RestApiApplication.class, args);
 	}
-
 }

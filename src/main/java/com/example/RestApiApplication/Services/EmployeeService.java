@@ -13,8 +13,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeService {
+  private final EmployeeRepository employeeRepository;
+
   @Autowired
-  private EmployeeRepository employeeRepository;
+  public EmployeeService(EmployeeRepository employeeRepository) {
+    this.employeeRepository = employeeRepository;
+  }
 
   private Employee findByName(String name) {
     return this.employeeRepository.findByName(name);

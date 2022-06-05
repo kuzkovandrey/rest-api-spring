@@ -6,6 +6,7 @@ import com.example.RestApiApplication.Constants.PathVariables;
 import com.example.RestApiApplication.Constants.ApiController;
 import com.example.RestApiApplication.Dtos.Requests.OrderRequestDto;
 import com.example.RestApiApplication.Dtos.Responses.OrderResponseDto;
+import com.example.RestApiApplication.Dtos.Responses.ShortOrder;
 import com.example.RestApiApplication.Entities.Order;
 import com.example.RestApiApplication.Exceptions.OrderNotFoundException;
 import com.example.RestApiApplication.Mappers.OrderMapper;
@@ -20,8 +21,12 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping(ApiController.ORDERS)
 public class OrderController {
+  private final OrderService orderService;
+
   @Autowired
-  private OrderService orderService;
+  public OrderController(OrderService orderService) {
+    this.orderService = orderService;
+  }
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
@@ -40,11 +45,19 @@ public class OrderController {
     return this.orderService.getAll();
   }
 
+  @GetMapping(ApiController.LIST)
+  @ResponseStatus(HttpStatus.OK)
+  public List<ShortOrder> getOrderList() {
+    return this.orderService.getOrderList();
+  }
+
   @GetMapping(ApiController.ID_PATH)
   @ResponseStatus(HttpStatus.OK)
   public Order getById(@PathVariable(PathVariables.ID) Long id) {
     try {
+
       return this.orderService.getById(id);
+      
     } catch (OrderNotFoundException e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     } catch (Exception e) {

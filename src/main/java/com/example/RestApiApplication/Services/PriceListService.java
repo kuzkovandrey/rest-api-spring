@@ -12,8 +12,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PriceListService {
+  private final PriceListRepository priceListRepository;
+
   @Autowired
-  private PriceListRepository priceListRepository;
+  public PriceListService(PriceListRepository priceListRepository) {
+    this.priceListRepository = priceListRepository;
+  }
 
   private PriceList findByDescription(String desc) {
     return this.priceListRepository.findByDescription(desc);

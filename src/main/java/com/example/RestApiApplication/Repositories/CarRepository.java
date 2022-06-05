@@ -5,7 +5,9 @@ import java.util.List;
 import com.example.RestApiApplication.Entities.Car;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CarRepository extends CrudRepository<Car, Long> {
   Car findByStateNumber(String stateNumber);
   Car findByStateNumberAndModel(String stateNumber, String model);

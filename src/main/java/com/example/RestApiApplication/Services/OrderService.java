@@ -1,10 +1,12 @@
 package com.example.RestApiApplication.Services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Dtos.Requests.CarRequestDto;
 import com.example.RestApiApplication.Dtos.Requests.ClientRequestDto;
 import com.example.RestApiApplication.Dtos.Requests.OrderRequestDto;
+import com.example.RestApiApplication.Dtos.Responses.ShortOrder;
 import com.example.RestApiApplication.Entities.Car;
 import com.example.RestApiApplication.Entities.Client;
 import com.example.RestApiApplication.Entities.Employee;
@@ -14,6 +16,7 @@ import com.example.RestApiApplication.Exceptions.ClientNotFoundException;
 import com.example.RestApiApplication.Exceptions.EmployeeNotFoundException;
 import com.example.RestApiApplication.Exceptions.OrderNotFoundException;
 import com.example.RestApiApplication.Exceptions.PriceListNotFoundException;
+import com.example.RestApiApplication.Mappers.OrderMapper;
 import com.example.RestApiApplication.Repositories.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +25,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
-  @Autowired
-  private EmployeeService employeeService;
+  private final EmployeeService employeeService;
+
+  private final PriceListService priceListService;
+
+  private final ClientService clientService;
+
+  private final CarService carService;
+
+  private final OrderRepository orderRepository;
 
   @Autowired
-  private PriceListService priceListService;
-
-  @Autowired
-  private ClientService clientService;
-
-  @Autowired
-  private CarService carService;
-
-  @Autowired
-  private OrderRepository orderRepository;
+  public OrderService(
+          EmployeeService employeeService,
+          PriceListService priceListService,
+          ClientService clientService,
+          CarService carService,
+          OrderRepository orderRepository
+  ) {
+    this.employeeService = employeeService;
+    this.priceListService = priceListService;
+    this.clientService = clientService;
+    this.carService = carService;
+    this.orderRepository = orderRepository;
+  }
 
   @Transactional(rollbackFor = { Exception.class })
   public Order create(OrderRequestDto order)
@@ -60,6 +73,14 @@ public class OrderService {
 
   public List<Order> getAll() {
     return this.orderRepository.findAll();
+  }
+
+  public List<ShortOrder> getOrderList() {
+    return this.orderRepository
+      .findAll()
+      .stream()
+      .map(order -> OrderMapper.convertToShort(order))
+      .collect(Collectors.toList());
   }
 
   public Long delete(Long id) {

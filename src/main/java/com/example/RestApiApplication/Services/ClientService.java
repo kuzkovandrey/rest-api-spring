@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClientService {
+  private final ClientRepository clientRepository;
+
   @Autowired
-  private ClientRepository clientRepository;
+  public ClientService(ClientRepository clientRepository) {
+    this.clientRepository = clientRepository;
+  }
 
   private Client findByNameAndEmail(String name, String email) {
     return this.clientRepository.findByNameAndEmail(name, email);
