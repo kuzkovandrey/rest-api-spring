@@ -7,10 +7,7 @@ import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfig
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({
-	"com.example.RestApiApplication.Repositories",
-	"com.example.RestApiApplication.Services"
-})
+//@ComponentScan
 //@EnableAutoConfiguration
 public class RestApiApplication {
 	public static void main(String[] args) {
