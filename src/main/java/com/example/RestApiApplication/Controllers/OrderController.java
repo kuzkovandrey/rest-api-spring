@@ -1,7 +1,6 @@
 package com.example.RestApiApplication.Controllers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Constants.PathVariables;
 import com.example.RestApiApplication.Constants.ApiController;
@@ -42,12 +41,8 @@ public class OrderController {
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public List<OrderResponseDto> getAll() {
-    return this.orderService
-      .getAll()
-      .stream()
-      .map(order -> OrderMapper.convertEntityToDto(order))
-      .collect(Collectors.toList());
+  public List<Order> getAll() {
+    return this.orderService.getAll();
   }
 
   @GetMapping(ApiController.LIST)
@@ -60,10 +55,9 @@ public class OrderController {
   @ResponseStatus(HttpStatus.OK)
   public Order getById(@PathVariable(PathVariables.ID) Long id) {
     try {
-      //Order order = this.orderService.getById(id);
-      //return OrderMapper.convertEntityToDto(order);
 
       return this.orderService.getById(id);
+      
     } catch (OrderNotFoundException e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     } catch (Exception e) {

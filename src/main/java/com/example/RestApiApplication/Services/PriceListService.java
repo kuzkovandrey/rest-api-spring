@@ -1,6 +1,7 @@
 package com.example.RestApiApplication.Services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.RestApiApplication.Entities.PriceList;
 import com.example.RestApiApplication.Exceptions.PriceListNotFoundException;
@@ -23,13 +24,12 @@ public class PriceListService {
   }
 
   public PriceList create(PriceList price) {
-    PriceList priceList = this.findByDescription(price.getDescription());
-
-    if (priceList == null) return this.priceListRepository.save(price);
-
-    priceList.setCost(price.getCost());
-      
-    return this.priceListRepository.save(priceList);
+    // PriceList priceList = this.findByDescription(price.getDescription());
+    // if (priceList == null) return this.priceListRepository.save(price);
+    // priceList.setCost(price.getCost());
+    // priceList.setIsRemoved(false);
+    // return this.priceListRepository.save(priceList);
+    return this.priceListRepository.save(price);
   }
 
   public PriceList getById(Long id) throws PriceListNotFoundException {
@@ -39,7 +39,11 @@ public class PriceListService {
   }
 
   public List<PriceList> getAll() {
-    return this.priceListRepository.findAll();
+    return this.priceListRepository
+      .findAll()
+      .stream()
+      .filter(price -> !price.getIsRemoved())
+      .collect(Collectors.toList());
   }
 
   public PriceList update(PriceList price, Long id) 
@@ -48,12 +52,18 @@ public class PriceListService {
 
     priceList.setCost(price.getCost());
     priceList.setDescription(price.getDescription());
+    // priceList.setIsRemoved(false);
 
     return this.priceListRepository.save(priceList);
   }
 
-  public Long delete(Long id) {
-    this.priceListRepository.deleteById(id);
+  public Long delete(Long id) throws PriceListNotFoundException {
+    PriceList price = this.getById(id);
+
+    price.setIsRemoved(true);
+
+    this.update(price, id);
+
     return id;
   }
   

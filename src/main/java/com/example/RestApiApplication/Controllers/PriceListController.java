@@ -73,9 +73,15 @@ public class PriceListController {
   }
 
   @DeleteMapping(ApiController.ID_PATH)
-  public ResponseEntity<Long> delete(@PathVariable(PathVariables.ID) Long id) {
-    this.priceListService.delete(id);
+  public ResponseEntity<?> delete(@PathVariable(PathVariables.ID) Long id) {
+    try {
+      this.priceListService.delete(id);
     
-    return new ResponseEntity<Long>(id, HttpStatus.OK);
+      return new ResponseEntity<Long>(id, HttpStatus.OK);
+    } catch (PriceListNotFoundException e) {
+      return ErrorResponse.getNotFoundError(e);
+    } catch (Exception e) {
+      return ErrorResponse.getServerError();
+    }
   }
 }

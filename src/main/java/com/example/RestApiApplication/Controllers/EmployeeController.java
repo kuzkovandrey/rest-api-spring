@@ -73,10 +73,16 @@ public class EmployeeController {
   }
 
   @DeleteMapping(ApiController.ID_PATH)
-  public ResponseEntity<Long> delete(@PathVariable(PathVariables.ID) Long id) {
-    this.employeeService.delete(id);
+  public ResponseEntity<?> delete(@PathVariable(PathVariables.ID) Long id) {
+    try {
+      this.employeeService.delete(id);
     
-    return new ResponseEntity<Long>(id, HttpStatus.OK);
+      return new ResponseEntity<Long>(id, HttpStatus.OK);
+    } catch (EmployeeNotFoundException e) {
+      return ErrorResponse.getNotFoundError(e);
+    } catch (Exception e) {
+      return ErrorResponse.getServerError();
+    }
   }
   
 }

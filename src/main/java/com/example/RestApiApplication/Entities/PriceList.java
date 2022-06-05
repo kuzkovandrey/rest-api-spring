@@ -21,6 +21,9 @@ public class PriceList {
   @Column(name = ColumnName.COST, nullable = false)
   private float cost;
 
+  @Column(name = ColumnName.IS_REMOVED, nullable = false)
+  private boolean isRemoved = false;
+
   @OneToMany(
     mappedBy = ColumnName.EMPLOYEE, 
     cascade = { CascadeType.MERGE, CascadeType.PERSIST }
@@ -46,6 +49,10 @@ public class PriceList {
     return this.cost;
   }
 
+  public boolean getIsRemoved() {
+    return this.isRemoved;
+  }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -56,5 +63,9 @@ public class PriceList {
 
   public void setCost(float cost) {
     this.cost = cost;
+  }
+
+  public void setIsRemoved(boolean isRemoved) {
+    this.isRemoved = isRemoved;
   }
 }

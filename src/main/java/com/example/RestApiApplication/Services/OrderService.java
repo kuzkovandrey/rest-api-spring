@@ -92,7 +92,7 @@ public class OrderService {
     return this.clientService.create(
       new Client(
         client.getEmail(),
-        client.getEmail()
+        client.getName()
       )
     );
   }
