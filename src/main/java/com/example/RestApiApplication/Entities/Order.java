@@ -41,7 +41,7 @@ public class Order {
   @Column(name = ColumnName.PRICE, nullable = false)
   private float price;
 
-  @Column(name = ColumnName.CAR, nullable = false)
+  @Column(name = ColumnName.CAR, nullable = true)
   private Car car;
 
   public Order() {}
