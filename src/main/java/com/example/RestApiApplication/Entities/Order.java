@@ -32,7 +32,6 @@ public class Order {
   @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
   private Employee employee;
 
-  //, optional = false
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = ColumnName.PRICE_LIST_ID, nullable = false)
   @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
@@ -44,7 +43,6 @@ public class Order {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = ColumnName.CAR_ID, nullable = false)
   @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
-  @Column(name = ColumnName.CAR, nullable = false)
   private Car car;
 
   public Order() {}
