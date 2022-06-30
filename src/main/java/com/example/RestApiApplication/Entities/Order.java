@@ -41,6 +41,8 @@ public class Order {
   @Column(name = ColumnName.PRICE, nullable = false)
   private float price;
 
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = ColumnName.CAR_ID, nullable = false)
   @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
   @Column(name = ColumnName.CAR, nullable = false)
   private Car car;
