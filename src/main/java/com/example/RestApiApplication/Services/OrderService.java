@@ -60,7 +60,7 @@ public class OrderService {
     PriceList priceList = this.priceListService.getById(order.getPriceListId());
     float price = order.getPrice();
 
-    Order createdOrder = new Order(client, employee, priceList, price);
+    Order createdOrder = new Order(client, car, employee, priceList, price);
 
     return this.orderRepository.save(createdOrder);
   }

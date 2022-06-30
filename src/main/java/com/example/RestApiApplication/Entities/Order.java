@@ -41,15 +41,20 @@ public class Order {
   @Column(name = ColumnName.PRICE, nullable = false)
   private float price;
 
+  @Column(name = ColumnName.CAR, nullable = false)
+  private Car car;
+
   public Order() {}
 
   public Order(
-    Client client, 
+    Client client,
+    Car car,
     Employee employee, 
     PriceList priceList, 
     float price
   ) {
     this.client = client;
+    this.car = car;
     this.employee = employee;
     this.priceList = priceList;
     this.price = price;
@@ -61,6 +66,10 @@ public class Order {
 
   public Client getClient() {
     return this.client;
+  }
+
+  public Car getCar() {
+    return this.car;
   }
 
   public Employee getEmployee() {
@@ -85,6 +94,10 @@ public class Order {
 
   public void setClient(Client client) {
     this.client = client;
+  }
+
+  public void setCar(Car car) {
+    this.car = car;
   }
 
   public void setEmployee(Employee employee) {
