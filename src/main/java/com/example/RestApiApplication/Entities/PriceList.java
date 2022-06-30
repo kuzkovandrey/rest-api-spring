@@ -1,9 +1,7 @@
 package com.example.RestApiApplication.Entities;
 
 import java.util.List;
-
 import javax.persistence.*;
-
 import com.example.RestApiApplication.Constants.ColumnName;
 import com.example.RestApiApplication.Constants.TableName;
 

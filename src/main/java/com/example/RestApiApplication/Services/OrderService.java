@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.example.RestApiApplication.Dtos.Requests.CarRequestDto;
 import com.example.RestApiApplication.Dtos.Requests.ClientRequestDto;
 import com.example.RestApiApplication.Dtos.Requests.OrderRequestDto;
+import com.example.RestApiApplication.Dtos.Responses.OrderInfoDto;
 import com.example.RestApiApplication.Dtos.Responses.ShortOrder;
 import com.example.RestApiApplication.Entities.Car;
 import com.example.RestApiApplication.Entities.Client;
@@ -48,6 +49,13 @@ public class OrderService {
     this.clientService = clientService;
     this.carService = carService;
     this.orderRepository = orderRepository;
+  }
+
+  public OrderInfoDto getNewOrderInfo() {
+    return new OrderInfoDto(
+            employeeService.getAll(),
+            priceListService.getAll()
+    );
   }
 
   @Transactional(rollbackFor = { Exception.class })
