@@ -41,7 +41,8 @@ public class Order {
   @Column(name = ColumnName.PRICE, nullable = false)
   private float price;
 
-  @Column(name = ColumnName.CAR, nullable = true)
+  @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+  @Column(name = ColumnName.CAR, nullable = false)
   private Car car;
 
   public Order() {}
