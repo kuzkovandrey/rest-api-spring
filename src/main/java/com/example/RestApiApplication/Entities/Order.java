@@ -40,22 +40,24 @@ public class Order {
   @Column(name = ColumnName.PRICE, nullable = false)
   private float price;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = ColumnName.CAR_ID, nullable = false)
-  @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
-  private Car car;
+//  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//  @JoinColumn(name = ColumnName.CAR_ID, nullable = false)
+//  @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+//  private Car car;
+
+  private String carInfo;
 
   public Order() {}
 
   public Order(
     Client client,
-    Car car,
+    String carInfo,
     Employee employee, 
     PriceList priceList, 
     float price
   ) {
     this.client = client;
-    this.car = car;
+    this.carInfo = carInfo;
     this.employee = employee;
     this.priceList = priceList;
     this.price = price;
@@ -69,8 +71,8 @@ public class Order {
     return this.client;
   }
 
-  public Car getCar() {
-    return this.car;
+  public String getCarInfo() {
+    return this.carInfo;
   }
 
   public Employee getEmployee() {
@@ -97,8 +99,8 @@ public class Order {
     this.client = client;
   }
 
-  public void setCar(Car car) {
-    this.car = car;
+  public void setCarInfo(String carInfo) {
+    this.carInfo = carInfo;
   }
 
   public void setEmployee(Employee employee) {

@@ -36,6 +36,7 @@ public class OrderController {
       Order createdOrder = this.orderService.create(order);
       return OrderMapper.convertEntityToDto(createdOrder);
     } catch (Exception e) {
+      System.out.println(e.toString());
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
   }
